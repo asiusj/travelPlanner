@@ -6,7 +6,7 @@
     <div class="row no-gutters">
       <div class="col-12 pt-2 pl-4">
         <CountryListItem
-          v-for="country in Countries"
+          v-for="country in route.data"
           :key="country.id"
           :country="country"
           :route="true"
@@ -18,14 +18,19 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import CountryItem from "../models/CountryItem";
+import CountryListItem from "@/components/CoutryListItem.vue";
+import { State } from "vuex-class";
+import { RouteState } from "../store/Route/types";
 
-@Component
+@Component({
+  components: {
+    CountryListItem
+  }
+})
 export default class Route extends Vue {
   title = "Route";
-  get Countries(): CountryItem[] {
-    return this.$store.getters["getRoute"];
-  }
+  @State("route")
+  route!: RouteState;
 }
 </script>
 

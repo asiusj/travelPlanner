@@ -16,6 +16,8 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 import CountryItem from "../models/CountryItem";
 import CountryListItem from "@/components/CoutryListItem.vue";
+import { State, Action } from "vuex-class";
+import { CountriesState } from "../store/Countries/types";
 
 @Component({
   components: {
@@ -25,9 +27,15 @@ import CountryListItem from "@/components/CoutryListItem.vue";
 export default class Countries extends Vue {
   title = "Countries";
 
+  @State("countries")
+  countries!: CountriesState;
+
   get Countries(): CountryItem[] {
-    return this.$store.getters["getAllCountries"];
+    return this.countries.data;
   }
+
+  @Action("SetAllCountries", { namespace: "countries" })
+  SetAllCountries!: Function;
 
   private created() {
     // this.getAllCounries();
@@ -37,7 +45,8 @@ export default class Countries extends Vue {
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then(res => {
-        if (res.data && res.data.type === Array) {
+        console.log(res);
+        if (res.data && res.data.length) {
           const data: CountryItem[] = res.data;
           const countries: CountryItem[] = data.map(
             (country: CountryItem, i: number) => {
@@ -50,7 +59,7 @@ export default class Countries extends Vue {
               return item;
             }
           );
-          this.$store.dispatch("SetAllCountries", countries);
+          this.SetAllCountries(countries);
         }
       })
       .catch(e => {

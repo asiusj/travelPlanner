@@ -1,62 +1,24 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { StoreOptions } from "vuex";
 import CountryItem from "@/models/CountryItem";
+import { RootState } from "./types";
+import { countries } from "./Countries";
+import { route } from "./Route";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-    state: {
-        countries: [
-            {
-                id: 0,
-                name: "Afghanistan",
-                flag: "https://restcountries.eu/data/afg.svg",
-                inRoute: false,
-            },
-            {
-                id: 1,
-                name: "Åland Islands",
-                flag: "https://restcountries.eu/data/ala.svg",
-                inRoute: false,
-            },
-            {
-                id: 2,
-                name: "Albania",
-                flag: "https://restcountries.eu/data/alb.svg",
-                inRoute: false,
-            },
-        ] as CountryItem[],
-        route: [] as CountryItem[],
+const store: StoreOptions<RootState> = {
+    modules: {
+        countries,
+        route,
     },
-    mutations: {
-        setAllCountries: (state, payload: CountryItem[]) => {
-            state.countries = payload;
-        },
-        setRoute: (state, payload: CountryItem[]) => {
-            state.route = payload;
-        },
-    },
-    actions: {
-        // AddCountryToRoute: (
-        //     { commit, getters },
-        //     payload: { id: number; order: number }
-        // ) => {
-        //     let route = getters["getRoute"];
-        //     let coutries = getters["getAllCountries"];
-        //     console.log(coutries[0]);
-        //     console.log(route);
-        // },
-        SetAllCountries: ({ commit }, payload: CountryItem[]) => {
-            commit("setAllCountries", payload);
-        },
-    },
-    modules: {},
     getters: {
-        getRoute: (state) => {
-            return state.route;
-        },
-        getAllCountries: (state) => {
-            return state.countries;
+        getCountryById: (state) => (id: number): CountryItem => {
+            return state.countries.data.filter((elem) => {
+                return elem.id === id;
+            })[0];
         },
     },
-});
+};
+
+export default new Vuex.Store<RootState>(store);
