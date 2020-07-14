@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid p-0 route route_text-color">
     <div class="row no-gutters">
-      <div class="col-12 pt-4 pl-4 pb-2 h6">{{title}}</div>
+      <div class="col-12 pt-1 pl-1 pb-1 h6 pt-md-4 pl-md-4 pb-md-4">{{title}}</div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 pt-2 pl-4">
+      <div class="col-12 pt-1 pl-1 pt-md-4 pl-md-4">
         <CountryListItem
           v-for="country in route.data"
           :key="country.id"

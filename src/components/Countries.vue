@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid p-0 countries text-white">
     <div class="row no-gutters text-white">
-      <div class="col-12 pt-4 pl-4 pb-2 h6">{{title}}</div>
+      <div class="col-12 pt-1 pl-1 pb-1 h6 pt-md-4 pl-md-4 pb-md-4">{{title}}</div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 pt-2 pl-4">
+      <div class="col-12 pt-1 pl-1 pt-md-4 pl-md-4">
         <CountryListItem v-for="country in Countries" :key="country.id" :country="country" />
       </div>
     </div>
@@ -38,14 +38,13 @@ export default class Countries extends Vue {
   SetAllCountries!: Function;
 
   private created() {
-    // this.getAllCounries();
+    this.getAllCounries();
   }
 
   private getAllCounries(): void {
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then(res => {
-        console.log(res);
         if (res.data && res.data.length) {
           const data: CountryItem[] = res.data;
           const countries: CountryItem[] = data.map(

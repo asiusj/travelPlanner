@@ -7,13 +7,13 @@ import { RootState } from "../types";
 
 export const state: RouteState = {
     data: [
-        {
-            id: 0,
-            name: "Afghanistan",
-            flag: "https://restcountries.eu/data/afg.svg",
-            inRoute: true,
-            order: 0,
-        },
+        // {
+        //     id: 0,
+        //     name: "Afghanistan",
+        //     flag: "https://restcountries.eu/data/afg.svg",
+        //     inRoute: true,
+        //     order: 0,
+        // },
     ],
 };
 

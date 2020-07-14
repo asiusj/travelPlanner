@@ -32,7 +32,10 @@ export default class Planner extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.planner__title {
-  background-color: #6b95e1;
+.planner {
+  box-shadow: 0px 0px 16px rgba(120, 120, 120, 0.7);
+  .planner__title {
+    background-color: #6b95e1;
+  }
 }
 </style>

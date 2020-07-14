@@ -7,24 +7,24 @@ import { RootState } from "../types";
 
 export const state: CountriesState = {
     data: [
-        {
-            id: 0,
-            name: "Afghanistan",
-            flag: "https://restcountries.eu/data/afg.svg",
-            inRoute: true,
-        },
-        {
-            id: 1,
-            name: "Åland Islands",
-            flag: "https://restcountries.eu/data/ala.svg",
-            inRoute: false,
-        },
-        {
-            id: 2,
-            name: "Albania",
-            flag: "https://restcountries.eu/data/alb.svg",
-            inRoute: false,
-        },
+        // {
+        //     id: 0,
+        //     name: "Afghanistan",
+        //     flag: "https://restcountries.eu/data/afg.svg",
+        //     inRoute: false,
+        // },
+        // {
+        //     id: 1,
+        //     name: "Åland Islands",
+        //     flag: "https://restcountries.eu/data/ala.svg",
+        //     inRoute: false,
+        // },
+        // {
+        //     id: 2,
+        //     name: "Albania",
+        //     flag: "https://restcountries.eu/data/alb.svg",
+        //     inRoute: false,
+        // },
     ],
 };
 

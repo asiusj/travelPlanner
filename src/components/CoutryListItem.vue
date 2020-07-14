@@ -1,10 +1,10 @@
 <template>
-  <div class="row no-gutters country-list-item pt-2 pb-2">
-    <div class="col-1 country-list-item__image">
+  <div class="row no-gutters country-list-item pt-md-2 pb-md-2 pt-1 pb-1">
+    <div class="col-3 col-lg-1 country-list-item__image">
       <img :src="country.flag" :alt="country.name" />
     </div>
-    <div class="col-5 country-list-item__name ml-2">{{country.name}}</div>
-    <div v-if="!route" class="col-2 text-center">
+    <div class="col-9 col-lg-5 country-list-item__name ml-2 mb-2">{{country.name}}</div>
+    <div v-if="!route" class="col-md-4 col-lg-2 text-center mb-2">
       <b-button
         pill
         variant="outline-light"
@@ -12,19 +12,19 @@
         @click="AddToRoute(0)"
       >start</b-button>
     </div>
-    <div v-if="!route" class="col-2 text-center">
+    <div v-if="!route" class="col-md-4 col-lg-2 text-center mb-2">
       <b-button
         pill
         variant="outline-light"
         :disabled="country.inRoute"
-        @click="AddToRoute(-1)"
+        @click="AddToRoute(-2)"
       >medium</b-button>
     </div>
-    <div v-if="!route" class="col-2 text-center">
-      <b-button pill variant="outline-light" :disabled="country.inRoute" @click="AddToRoute(1)">end</b-button>
+    <div v-if="!route" class="col-md-4 col-lg-2 text-center mb-2">
+      <b-button pill variant="outline-light" :disabled="country.inRoute" @click="AddToRoute(-1)">end</b-button>
     </div>
-    <div v-if="route" class="offset-4 col-2 text-center">
-      <b-button pill variant="outline-lblue">remove</b-button>
+    <div v-if="route" class="offset-md-8 col-md-4 offset-lg-4 col-lg-2 text-center mb-2">
+      <b-button pill variant="outline-lblue" @click="RemoveFromRoute(country.id)">remove</b-button>
     </div>
   </div>
 </template>
@@ -38,7 +38,6 @@ import { Action } from "vuex-class";
 @Component
 export default class CoutryListItem extends Vue {
   @Prop() country!: CountryItem | RouteItem;
-  @Prop() color!: string;
   @Prop() route?: boolean;
 
   @Action("route/AddNewRouteItem") AddNewRouteItem!: Function;
@@ -49,6 +48,12 @@ export default class CoutryListItem extends Vue {
       order
     };
     this.AddNewRouteItem(newRouteParams);
+  }
+
+  @Action("route/RemoveRouteItem") RemoveRouteItem!: Function;
+
+  private RemoveFromRoute(id: number): void {
+    this.RemoveRouteItem(id);
   }
 }
 </script>
